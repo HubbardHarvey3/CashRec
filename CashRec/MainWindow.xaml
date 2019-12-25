@@ -1,0 +1,38 @@
+﻿<Window x:Class="CashRec.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CashRec"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="470" Width="600">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="154*"/>
+        </Grid.ColumnDefinitions>
+        <TabControl>
+            <TabItem x:Name="DonorListTab" Header="Donor List">
+                <Grid Background="#FFE5E5E5">
+                    <TextBlock x:Name="DonorNumLabel" HorizontalAlignment="Left" Margin="27,148,0,0" Text="Donor #" TextWrapping="Wrap" VerticalAlignment="Top" Height="21" Width="54"/>
+                    <TextBox x:Name="DonorNumInput" HorizontalAlignment="Left" Margin="27,174,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="54"/>
+                    <TextBlock x:Name="DonorNameLabel" HorizontalAlignment="Left" Margin="27,197,0,0" Text="DonorName" TextWrapping="Wrap" VerticalAlignment="Top"/>
+                    <TextBox x:Name="DonorNameInput" HorizontalAlignment="Left" Margin="27,220,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="165" Height="29"/>
+                    <Button Content="Submit" HorizontalAlignment="Left" Margin="27,254,0,0" VerticalAlignment="Top" Width="54" Click="SumbitNewDonor"/>
+                    <TextBox x:Name="DonorListDisplay" HorizontalAlignment="Left" Margin="318,29,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="253" Height="367" TextChanged="DonorListDisplay_TextChanged"/>
+                    <TextBlock x:Name="DonorListOutput" HorizontalAlignment="Left" Margin="318,12,0,0" Text="Donor List" TextWrapping="Wrap" VerticalAlignment="Top"/>
+                    <Button x:Name="Save_Donor_List" Content="Save Donor List" HorizontalAlignment="Left" Margin="27,279,0,0" VerticalAlignment="Top" Height="26" Width="99" Click="SaveDonorList"/>
+                    <Button x:Name="Displaybtn" Content="Display Your Donor List" HorizontalAlignment="Left" Margin="27,29,0,0" VerticalAlignment="Top" Click="Display" Width="131" Height="33"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="29,78,0,0" Text="Too Add a new Donor Fill out the below Form and hit Submit then Save" TextWrapping="WrapWithOverflow" VerticalAlignment="Top" Height="65" Width="230"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Daily Reconciliation">
+                <Grid>
+                    <DataGrid Name="dgSimple" AutoGenerateColumns="True">
+                        
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+        </TabControl>
+
+    </Grid>
+</Window>
