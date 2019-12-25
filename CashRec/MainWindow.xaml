@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CashRec"
         mc:Ignorable="d"
-        Title="MainWindow" Height="470" Width="600">
+        Title="MainWindow" Height="500" Width="600">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="154*"/>
@@ -26,12 +26,19 @@
                 </Grid>
             </TabItem>
             <TabItem Header="Daily Reconciliation">
-                <Grid>
-                    <DataGrid Name="dgSimple" AutoGenerateColumns="True">
-                        
-                    </DataGrid>
+                <Grid Background="#FFE5E5E5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="200"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" Text="Donor Number"></TextBlock>
+                    <ComboBox x:Name="DonorComboBox" HorizontalAlignment="Left" Margin="3,19,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="DonorComboBox_SelectionChanged"/>
+                    <DataGrid x:Name="DailyRecGrid" Width="380" Grid.Column="1" Margin="5,5,5,5"/>
+
                 </Grid>
             </TabItem>
+
+
         </TabControl>
 
     </Grid>

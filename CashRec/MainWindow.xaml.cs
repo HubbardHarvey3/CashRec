@@ -28,11 +28,7 @@ namespace CashRec
         {
             InitializeComponent();
             //Initializing the donorList Class and adding people hard code after program initializes
-            //Commented out troubleshooting and sending info to the console
-            //foreach (var item in donors)
-            //{
-            //    Console.WriteLine($"{item.donorNum}: {item.donorName}");
-            //}
+            
             //Reads CSV and adds the values to List
             using (StreamReader sr = new StreamReader(path))
             {
@@ -52,20 +48,19 @@ namespace CashRec
                         Console.WriteLine($"{strlist[0]} : {strlist[1]} added to donors list.");
                     }
                 }
-                //Once the CSV is added to the dictionary, write the dictionary to the Donor List output.
-                //foreach (KeyValuePair<Int32, string> entry in donorDictionary)
-                //{
-                //    DonorListDisplay.Text += string.Format("{0}, {1}" + Environment.NewLine, entry.Key.ToString(), entry.Value);
-                //};
+                //Add the List to the DonorList Display Text Box for the User
                 foreach (var item in donors)
                 {
                     DonorListDisplay.Text += $"{ item.donorNum }: { item.donorName }" + Environment.NewLine;
+                    DonorComboBox.Items.Add(item.donorNum.ToString() + " " + item.donorName);
                 }
 
             }
 
             //Setting the source of the datagrid to our recently created donorList, donors
-            dgSimple.ItemsSource = donors;
+            DailyRecGrid.ItemsSource = donors;
+            
+            
         }
         //I don't know what these two below do:
         private void DonorListDisplay_TextChanged(object sender, TextChangedEventArgs e)
@@ -78,7 +73,7 @@ namespace CashRec
         }
         //I don't know what these two above do:
 
-        //Uses DonorDictionary
+        //Uses donors list
         private void SumbitNewDonor(object sender, RoutedEventArgs e)
         {
             //setup variables for the Input Textboxes
@@ -106,7 +101,7 @@ namespace CashRec
             }
 
         }
-        //Uses DonorDictionary
+        //Uses donors list
         private void SaveDonorList(object sender, RoutedEventArgs e)
         {
             //Clean the CSV File of records
@@ -119,7 +114,10 @@ namespace CashRec
             }
         }
 
+        private void DonorComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
 
+        }
     }
 
 }
