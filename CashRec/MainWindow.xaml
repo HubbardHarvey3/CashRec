@@ -13,27 +13,18 @@
         <TabControl>
             <TabItem x:Name="DonorListTab" Header="Donor List">
                 <Grid Background="#FFE5E5E5">
-                    <TextBlock x:Name="DonorNumLabel" HorizontalAlignment="Left" Margin="27,148,0,0" Text="Donor #" TextWrapping="Wrap" VerticalAlignment="Top" Height="21" Width="54"/>
-                    <TextBox x:Name="DonorNumInput" HorizontalAlignment="Left" Margin="27,174,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="54"/>
-                    <TextBlock x:Name="DonorNameLabel" HorizontalAlignment="Left" Margin="27,197,0,0" Text="DonorName" TextWrapping="Wrap" VerticalAlignment="Top"/>
-                    <TextBox x:Name="DonorNameInput" HorizontalAlignment="Left" Margin="27,220,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="165" Height="29"/>
-                    <Button Content="Submit" HorizontalAlignment="Left" Margin="27,254,0,0" VerticalAlignment="Top" Width="54" Click="SumbitNewDonor"/>
-                    <TextBox x:Name="DonorListDisplay" HorizontalAlignment="Left" Margin="318,29,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="253" Height="367" TextChanged="DonorListDisplay_TextChanged"/>
-                    <TextBlock x:Name="DonorListOutput" HorizontalAlignment="Left" Margin="318,12,0,0" Text="Donor List" TextWrapping="Wrap" VerticalAlignment="Top"/>
-                    <Button x:Name="Save_Donor_List" Content="Save Donor List" HorizontalAlignment="Left" Margin="27,279,0,0" VerticalAlignment="Top" Height="26" Width="99" Click="SaveDonorList"/>
-                    <Button x:Name="Displaybtn" Content="Display Your Donor List" HorizontalAlignment="Left" Margin="27,29,0,0" VerticalAlignment="Top" Click="Display" Width="131" Height="33"/>
                     <TextBlock HorizontalAlignment="Left" Margin="29,78,0,0" Text="Too Add a new Donor Fill out the below Form and hit Submit then Save" TextWrapping="WrapWithOverflow" VerticalAlignment="Top" Height="65" Width="230"/>
-                </Grid>
-            </TabItem>
-            <TabItem Header="Daily Reconciliation">
-                <Grid Background="#FFE5E5E5">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="200"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <TextBlock Grid.Column="0" Text="Donor Number"></TextBlock>
-                    <ComboBox x:Name="DonorComboBox" HorizontalAlignment="Left" Margin="3,19,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="DonorComboBox_SelectionChanged"/>
-                    <DataGrid x:Name="DailyRecGrid" Width="380" Grid.Column="1" Margin="5,5,5,5"/>
+                    <TextBlock x:Name="DonorNumLabel" HorizontalAlignment="Left" Margin="27,136,0,0" Text="Donor #" TextWrapping="Wrap" VerticalAlignment="Top" Height="21" Width="54"/>
+                    <TextBox x:Name="DonorNumInput" HorizontalAlignment="Left" Margin="27,162,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="54"/>
+                    <TextBlock x:Name="DonorFirstName" HorizontalAlignment="Left" Margin="27,197,0,0" Text="First Name" TextWrapping="Wrap" VerticalAlignment="Top"/>
+                    <TextBox x:Name="DonorFirstNameInput" HorizontalAlignment="Left" Margin="27,228,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="165" Height="18"/>
+                    <TextBox x:Name="DonorLastNameInput" HorizontalAlignment="Left" Margin="27,292,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="165" Height="18"/>
+                    <TextBlock x:Name="DonorLastName" HorizontalAlignment="Left" Margin="27,262,0,0" Text="Last Name" TextWrapping="Wrap" VerticalAlignment="Top"/>
+                    <Button Content="Submit" HorizontalAlignment="Left" Margin="27,344,0,0" VerticalAlignment="Top" Width="54" Click="SubmitDonor" />
+                    <TextBox x:Name="DonorListDisplay" Margin="318,29,23,60" Text="" TextWrapping="Wrap" TextChanged="DonorListDisplay_TextChanged"/>
+                    <TextBlock x:Name="DonorListOutput" HorizontalAlignment="Left" Margin="318,12,0,0" Text="Donor List" TextWrapping="Wrap" VerticalAlignment="Top"/>
+                    <Button x:Name="Displaybtn" Click="writeDlist" Content="Display Your Donor List" HorizontalAlignment="Left" Margin="27,29,0,0" VerticalAlignment="Top" Width="131" Height="33"/>
+
 
                 </Grid>
             </TabItem>
