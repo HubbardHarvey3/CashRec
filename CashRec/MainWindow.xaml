@@ -13,17 +13,23 @@
         <TabControl>
             <TabItem x:Name="DonorListTab" Header="Donor List">
                 <Grid Background="#FFE5E5E5">
-                    <TextBlock HorizontalAlignment="Left" Margin="29,78,0,0" Text="Too Add a new Donor Fill out the below Form and hit Submit then Save" TextWrapping="WrapWithOverflow" VerticalAlignment="Top" Height="65" Width="230"/>
-                    <TextBlock x:Name="DonorNumLabel" HorizontalAlignment="Left" Margin="27,136,0,0" Text="Donor #" TextWrapping="Wrap" VerticalAlignment="Top" Height="21" Width="54"/>
-                    <TextBox x:Name="DonorNumInput" HorizontalAlignment="Left" Margin="27,162,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="54"/>
-                    <TextBlock x:Name="DonorFirstName" HorizontalAlignment="Left" Margin="27,197,0,0" Text="First Name" TextWrapping="Wrap" VerticalAlignment="Top"/>
-                    <TextBox x:Name="DonorFirstNameInput" HorizontalAlignment="Left" Margin="27,228,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="165" Height="18"/>
-                    <TextBox x:Name="DonorLastNameInput" HorizontalAlignment="Left" Margin="27,292,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="165" Height="18"/>
-                    <TextBlock x:Name="DonorLastName" HorizontalAlignment="Left" Margin="27,262,0,0" Text="Last Name" TextWrapping="Wrap" VerticalAlignment="Top"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="29,58,0,0" TextWrapping="WrapWithOverflow" VerticalAlignment="Top" Height="85" Width="230">
+                        To Add a new Donor Fill out the below Form and hit Submit, then Save
+                        <LineBreak/>
+                        To delete a donor, enter their donor number and press the delete button
+                    </TextBlock>
+                    <TextBlock x:Name="DonorNumLabel" HorizontalAlignment="Left" Margin="27,151,0,0" Text="Donor #" TextWrapping="Wrap" VerticalAlignment="Top" Height="21" Width="54"/>
+                    <TextBox x:Name="DonorNumInput" HorizontalAlignment="Left" Margin="27,177,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="54"/>
+                    <TextBlock x:Name="DonorFirstName" HorizontalAlignment="Left" Margin="27,212,0,0" Text="First Name" TextWrapping="Wrap" VerticalAlignment="Top"/>
+                    <TextBox x:Name="DonorFirstNameInput" HorizontalAlignment="Left" Margin="27,243,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="165" Height="18"/>
+                    <TextBox x:Name="DonorLastNameInput" HorizontalAlignment="Left" Margin="27,307,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="165" Height="18"/>
+                    <TextBlock x:Name="DonorLastName" HorizontalAlignment="Left" Margin="27,277,0,0" Text="Last Name" TextWrapping="Wrap" VerticalAlignment="Top"/>
                     <Button Content="Submit" HorizontalAlignment="Left" Margin="27,344,0,0" VerticalAlignment="Top" Width="54" Click="SubmitDonor" />
-                    <TextBox x:Name="DonorListDisplay" Margin="318,29,23,60" Text="" TextWrapping="Wrap" TextChanged="DonorListDisplay_TextChanged"/>
-                    <TextBlock x:Name="DonorListOutput" HorizontalAlignment="Left" Margin="318,12,0,0" Text="Donor List" TextWrapping="Wrap" VerticalAlignment="Top"/>
-                    <Button x:Name="Displaybtn" Click="writeDlist" Content="Display Your Donor List" HorizontalAlignment="Left" Margin="27,29,0,0" VerticalAlignment="Top" Width="131" Height="33"/>
+                    <TextBlock x:Name="DonorListTitle" HorizontalAlignment="Left" Margin="318,12,0,0" Text="Donor List" TextWrapping="Wrap" VerticalAlignment="Top"/>
+                    <Button x:Name="Displaybtn" Click="writeDlist" Content="Display Your Donor List" HorizontalAlignment="Left" Margin="27,10,0,0" VerticalAlignment="Top" Width="131" Height="18"/>
+                    <TextBox x:Name="DonorListOutput" Margin="318,33,10,10" Text="TextBox" TextWrapping="Wrap" />
+                    <Button Content="Delete" HorizontalAlignment="Left" Margin="104,177,0,0" VerticalAlignment="Top" Height="18" Width="54" Click="DeleteDonorNum"/>
+
 
 
                 </Grid>
