@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CashRec"
         mc:Ignorable="d"
-        Title="MainWindow" Height="500" Width="600">
+        Title="MainWindow" Height="500" Width="700">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="154*"/>
@@ -16,21 +16,43 @@
                     <TextBlock HorizontalAlignment="Left" Margin="29,58,0,0" TextWrapping="WrapWithOverflow" VerticalAlignment="Top" Height="85" Width="230">
                         To Add a new Donor Fill out the below Form and hit Submit, then Save
                         <LineBreak/>
+                        <LineBreak/>
                         To delete a donor, enter their donor number and press the delete button
                     </TextBlock>
-                    <TextBlock x:Name="DonorNumLabel" HorizontalAlignment="Left" Margin="27,151,0,0" Text="Donor #" TextWrapping="Wrap" VerticalAlignment="Top" Height="21" Width="54"/>
-                    <TextBox x:Name="DonorNumInput" HorizontalAlignment="Left" Margin="27,177,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="54"/>
-                    <TextBlock x:Name="DonorFirstName" HorizontalAlignment="Left" Margin="27,212,0,0" Text="First Name" TextWrapping="Wrap" VerticalAlignment="Top"/>
-                    <TextBox x:Name="DonorFirstNameInput" HorizontalAlignment="Left" Margin="27,243,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="165" Height="18"/>
-                    <TextBox x:Name="DonorLastNameInput" HorizontalAlignment="Left" Margin="27,307,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="165" Height="18"/>
+                    <TextBlock x:Name="DonorNumLabel" HorizontalAlignment="Left" Margin="27,151,0,0" Text="Donor #" TextWrapping="Wrap" VerticalAlignment="Top" Height="20" Width="54"/>
+                    <TextBox x:Name="DonorNumInput" HorizontalAlignment="Left" Margin="27,177,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Height="20" Width="54"/>
+                    <TextBlock x:Name="DonorFirstName" HorizontalAlignment="Left" Margin="27,212,0,0" Text="First Name" TextWrapping="Wrap" VerticalAlignment="Top" Height="20"/>
+                    <TextBox x:Name="DonorFirstNameInput" HorizontalAlignment="Left" Margin="27,243,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="165" Height="20"/>
+                    <TextBox x:Name="DonorLastNameInput" HorizontalAlignment="Left" Margin="27,307,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="165" Height="20"/>
                     <TextBlock x:Name="DonorLastName" HorizontalAlignment="Left" Margin="27,277,0,0" Text="Last Name" TextWrapping="Wrap" VerticalAlignment="Top"/>
-                    <Button Content="Submit" HorizontalAlignment="Left" Margin="27,344,0,0" VerticalAlignment="Top" Width="54" Click="SubmitDonor" />
+                    <Button Content="Submit" HorizontalAlignment="Left" Margin="27,344,0,0" VerticalAlignment="Top" Width="54" Click="SubmitDonor" Height="20" />
                     <TextBlock x:Name="DonorListTitle" HorizontalAlignment="Left" Margin="318,12,0,0" Text="Donor List" TextWrapping="Wrap" VerticalAlignment="Top"/>
-                    <Button x:Name="Displaybtn" Click="writeDlist" Content="Display Your Donor List" HorizontalAlignment="Left" Margin="27,10,0,0" VerticalAlignment="Top" Width="131" Height="18"/>
+                    <Button x:Name="Displaybtn" Click="writeDlist" Content="Display Your Donor List" HorizontalAlignment="Left" Margin="27,10,0,0" VerticalAlignment="Top" Width="131" Height="20"/>
                     <TextBox x:Name="DonorListOutput" Margin="318,33,10,10" Text="TextBox" TextWrapping="Wrap" />
-                    <Button Content="Delete" HorizontalAlignment="Left" Margin="104,177,0,0" VerticalAlignment="Top" Height="18" Width="54" Click="DeleteDonorNum"/>
+                    <Button Content="Delete" HorizontalAlignment="Left" Margin="104,177,0,0" VerticalAlignment="Top" Height="20" Width="54" Click="DeleteDonorNum"/>
+                </Grid>
+            </TabItem>
+            <TabItem x:Name="TransactionsTab" Header="Transactions">
+                <Grid Background="#FFE5E5E5">
+                    <TextBlock Margin="20,10" Height="20" x:Name="DonationInputName" VerticalAlignment="Top" HorizontalAlignment="Left" Width="200">Enter the donation information here:</TextBlock>
+                    <DatePicker x:Name="TransactionDateInput"  Margin="20,40,0,0" Height="25" VerticalAlignment="Top" HorizontalAlignment="Left" Width="133" SelectedDateFormat="Short" DisplayDate="01/30/2020 20:49:13" SnapsToDevicePixels="True"/>
+                    <TextBox x:Name="DonorNumTransactionInput" Margin="20,75,0,0" Height="20" VerticalAlignment="Top" HorizontalAlignment="Left" Width="115">Donor Number</TextBox>
+                    <TextBox x:Name="TransactionAmountInput" Margin="20,105,0,0" Height="20" VerticalAlignment="Top" HorizontalAlignment="Left" Width="115">Donation Amount</TextBox>
+                    <Button Margin="20,135,0,0" Height="20" VerticalAlignment="Top" HorizontalAlignment="Left" Width="58" Click="ListTransactions">Submit</Button>
+                    <Button x:Name="TransactionDelete" Margin="20,165,0,0" Height="20" VerticalAlignment="Top" HorizontalAlignment="Left" Width="78" Click="DeleteRow">Delete Row</Button>
+                    <Button x:Name="Total" Margin="20,195,0,0" Height="20" VerticalAlignment="Top" HorizontalAlignment="Left" Width="58" Click="total">Total</Button>
+                    <TextBox x:Name="DonorListOutputA" Margin="210,33,0,10" Text="TextBox" TextWrapping="Wrap" HorizontalAlignment="Left" Width="148" />
+                    <!--<TextBox x:Name="TransactionOutput" Margin="200,33,10,10" Text="TextBox" TextWrapping="Wrap" />-->
+                    <Button x:Name="ExportBtn" Margin="20,0,0,138" Height="40" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="100" Click="ExportList">Export to CSV</Button>
+                    <DataGrid Name="TransactionDataGrid" SelectionUnit="Cell" Margin="363,33,10,10" ColumnWidth="Auto" AutoGenerateColumns="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Date" Binding="{Binding date}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Donor #" Binding="{Binding donorNum}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Donor Name" Binding="{Binding name}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Amount" Binding="{Binding amount, StringFormat=C}" ></DataGridTextColumn>
+                        </DataGrid.Columns>
 
-
+                    </DataGrid>
 
                 </Grid>
             </TabItem>
