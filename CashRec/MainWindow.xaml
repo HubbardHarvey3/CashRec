@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CashRec"
         mc:Ignorable="d"
-        Title="MainWindow" Height="500" Width="700">
+        Title="MainWindow" Height="500" Width="760">
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="154*"/>
@@ -35,26 +36,50 @@
             <TabItem x:Name="TransactionsTab" Header="Transactions">
                 <Grid Background="#FFE5E5E5">
                     <TextBlock Margin="20,10" Height="20" x:Name="DonationInputName" VerticalAlignment="Top" HorizontalAlignment="Left" Width="200">Enter the donation information here:</TextBlock>
-                    <DatePicker x:Name="TransactionDateInput"  Margin="20,40,0,0" Height="25" VerticalAlignment="Top" HorizontalAlignment="Left" Width="133" SelectedDateFormat="Short" DisplayDate="01/30/2020 20:49:13" SnapsToDevicePixels="True"/>
-                    <TextBox x:Name="DonorNumTransactionInput" Margin="20,75,0,0" Height="20" VerticalAlignment="Top" HorizontalAlignment="Left" Width="115">Donor Number</TextBox>
-                    <TextBox x:Name="TransactionAmountInput" Margin="20,105,0,0" Height="20" VerticalAlignment="Top" HorizontalAlignment="Left" Width="115">Donation Amount</TextBox>
-                    <Button Margin="20,135,0,0" Height="20" VerticalAlignment="Top" HorizontalAlignment="Left" Width="58" Click="ListTransactions">Submit</Button>
-                    <Button x:Name="TransactionDelete" Margin="20,165,0,0" Height="20" VerticalAlignment="Top" HorizontalAlignment="Left" Width="78" Click="DeleteRow">Delete Row</Button>
-                    <Button x:Name="Total" Margin="20,195,0,0" Height="20" VerticalAlignment="Top" HorizontalAlignment="Left" Width="58" Click="total">Total</Button>
+                    <DatePicker x:Name="TransactionDateInput" x:FieldModifier="public" Margin="20,40,0,0" Height="25" VerticalAlignment="Top" HorizontalAlignment="Left" Width="133" SelectedDateFormat="Short" DisplayDate="01/30/2020 20:49:13" SnapsToDevicePixels="True"/>
+                    <Label HorizontalAlignment="Left" Margin="20,74,0,0" VerticalAlignment="Top" Width="100">Donor Number</Label>
+                    <TextBox x:Name="DonorNumTransactionInput" x:FieldModifier="public" Margin="20,98,0,0" Height="20" VerticalAlignment="Top" HorizontalAlignment="Left" Width="115"></TextBox>
+                    <Label Content="Check Amount" HorizontalAlignment="Left" Margin="20,117,0,0" VerticalAlignment="Top" Width="89"/>
+                    <TextBox x:Name="TransactionAmountCheckInput" x:FieldModifier="public" Margin="20,143,0,0" Height="20" VerticalAlignment="Top" HorizontalAlignment="Left" Width="115">0</TextBox>
+                    <Label Content="Cash Amount" HorizontalAlignment="Left" Margin="20,163,0,0" VerticalAlignment="Top" Width="89"/>
+                    <TextBox x:Name="TransactionAmountCashInput" x:FieldModifier="public" Margin="20,187,0,0" Height="20" VerticalAlignment="Top" HorizontalAlignment="Left" Width="115">0</TextBox>
+                    <Button Margin="20,217,0,0" Height="20" VerticalAlignment="Top" HorizontalAlignment="Left" Width="58" Click="ListTransactions">Submit</Button>
+                    <Button x:Name="TransactionDelete" x:FieldModifier="public" Margin="20,247,0,0" Height="20" VerticalAlignment="Top" HorizontalAlignment="Left" Width="78" Click="DeleteRow">Delete Row</Button>
+                    <Button x:Name="Total" x:FieldModifier="public" Margin="20,277,0,0" Height="20" VerticalAlignment="Top" HorizontalAlignment="Left" Width="58" Click="total">Total</Button>
                     <TextBox x:Name="DonorListOutputA" Margin="210,33,0,10" Text="TextBox" TextWrapping="Wrap" HorizontalAlignment="Left" Width="148" />
                     <!--<TextBox x:Name="TransactionOutput" Margin="200,33,10,10" Text="TextBox" TextWrapping="Wrap" />-->
-                    <Button x:Name="ExportBtn" Margin="20,0,0,138" Height="40" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="100" Click="ExportList">Export to CSV</Button>
-                    <DataGrid Name="TransactionDataGrid" SelectionUnit="Cell" Margin="363,33,10,10" ColumnWidth="Auto" AutoGenerateColumns="False">
-                        <DataGrid.Columns>
+                    <Button x:Name="ExportBtn" Margin="20,0,0,86" Height="40" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="100" Click="ExportList">Export to CSV</Button>
+                    <DataGrid x:FieldModifier="public" Name="TransactionDataGrid" SelectionUnit="Cell" Margin="363,33,10,10" ColumnWidth="Auto" AutoGenerateColumns="False">
+                        <DataGrid.Columns >
                             <DataGridTextColumn Header="Date" Binding="{Binding date}"></DataGridTextColumn>
                             <DataGridTextColumn Header="Donor #" Binding="{Binding donorNum}"></DataGridTextColumn>
                             <DataGridTextColumn Header="Donor Name" Binding="{Binding name}"></DataGridTextColumn>
-                            <DataGridTextColumn Header="Amount" Binding="{Binding amount, StringFormat=C}" ></DataGridTextColumn>
+                            <DataGridTextColumn Header="Check Amount" Binding="{Binding amountCheck, StringFormat=C}" ></DataGridTextColumn>
+                            <DataGridTextColumn Header="Cash Amount" Binding="{Binding amountCash, StringFormat=C}" ></DataGridTextColumn>
                         </DataGrid.Columns>
 
                     </DataGrid>
 
+
+
                 </Grid>
+            </TabItem>
+            <TabItem x:Name="BalanceTab" Header="Balancing">
+                <Grid>
+                    <DataGrid x:Name="BalancingDataGrid" x:FieldModifier="public"  SelectionUnit="Cell" Margin="125,22,505,21" ColumnWidth="Auto" AutoGenerateColumns="False">
+                        <DataGrid.Columns >
+                            <DataGridTextColumn Header="Check Amount" Binding="{Binding checkAmountBal}"></DataGridTextColumn>
+                        </DataGrid.Columns>
+
+                    </DataGrid>
+                    <Label HorizontalAlignment="Left" Margin="20,24,0,0" VerticalAlignment="Top" Width="100">Check Amounts</Label>
+                    <TextBox x:Name="BalanceCheckAmount" HorizontalAlignment="Left" Margin="20,44,0,0" VerticalAlignment="Top" Width="100">0.00</TextBox>
+                    <Button x:Name="EnterCheck" Click="InsertCheckAmount" HorizontalAlignment="Left" Height="20" Margin="20,74,0,0" VerticalAlignment="Top" Width="100">Submit</Button>
+                    <Button x:Name="DeleteCheck" Click="DeleteCheckAmount" HorizontalAlignment="Left" Height="20" Margin="20,104,0,0" VerticalAlignment="Top" Width="100">Delete</Button>
+                    <Label HorizontalAlignment="Left" Margin="20,136,0,0" VerticalAlignment="Top" Width="100"># of Checks</Label>
+                    <TextBox x:Name="BalanceCheckCount" HorizontalAlignment="Left" Margin="20,166,0,0" VerticalAlignment="Top" Width="100">0</TextBox>
+                </Grid>
+
             </TabItem>
 
 

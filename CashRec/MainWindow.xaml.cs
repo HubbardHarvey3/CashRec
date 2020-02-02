@@ -15,10 +15,12 @@ namespace CashRec
     {
         //Dictionary that holds everything from the Donor Class
         public static Dictionary<int, string> Dlist = new Dictionary<int, string>();
-        //List that takes entries from Dlist and helps to spit them into CSV File
-        public List<Transaction> TransactList = new List<Transaction>();
+
         //Filepath for CSV File which will record entries made on the transaction grid
         string csvFile = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + @"\TestCSV.csv";
+
+
+
         public MainWindow()
         {
 
@@ -83,20 +85,39 @@ namespace CashRec
         //*************EVENT HANDLERS ABOVE for Donor List Tab
 
 
-        //Event Handlers for Transaction Class
-        private void ListTransactions(object sender, RoutedEventArgs e)
+        //Event Handlers for Transaction Page
+        public void ListTransactions(object sender, RoutedEventArgs e)
         {
+
             //set the Itemsource to the new list TransactList
-            TransactionDataGrid.ItemsSource = TransactList;
+            TransactionDataGrid.ItemsSource = Transaction.TransactList;
+            //BalancingDataGrid.ItemsSource = Transaction.TransactList;
             //Use a foreach to add Dlist dicitionary to Transactlist on the Transaction Class
             foreach (var item in Dlist)
             {
                 //only adds if the Dlist.Key is valid
                 if (item.Key == Convert.ToInt32(DonorNumTransactionInput.Text))
                 {
-                    TransactList.Add(new Transaction { date = TransactionDateInput.Text, donorNum = item.Key, name = item.Value, amount = Convert.ToDouble(TransactionAmountInput.Text) });
+                    //Check if nothing is entered in Cash/Check input boxes and if nothing then change the amounts to 0.
+                    if (TransactionAmountCashInput.Text == "")
+                    {
+                        TransactionAmountCashInput.Text = "0";
+                    }
+                    else if (TransactionAmountCheckInput.Text == "")
+                    {
+                        TransactionAmountCheckInput.Text = "0";
+                    }
+                    Transaction.TransactList.Add(new Transaction
+                    {
+                        date = TransactionDateInput.Text,
+                        donorNum = item.Key,
+                        name = item.Value,
+                        amountCheck = Convert.ToDecimal(TransactionAmountCheckInput.Text),
+                        amountCash = Convert.ToDecimal(TransactionAmountCashInput.Text)
+                    });
                     //must refresh the DataGrid to include each row.
                     TransactionDataGrid.Items.Refresh();
+                    //BalancingDataGrid.Items.Refresh();
                 }
 
             }
@@ -106,30 +127,35 @@ namespace CashRec
         private void ExportList(object sender, RoutedEventArgs e)
         {
             //start by adding the column headers to the string
-            string csv = "DATE,Donor Number,Last Name, First Name, Donated Amount";
+            string csv = "DATE,Donor Number,Last Name, First Name, Check Amount, Cash Amount";
             //add each item from the TransactList to the string, ensuring to start a new line after before each entry
-            foreach (var item in TransactList)
+            foreach (var item in Transaction.TransactList)
             {
                 csv += "\r\n";
-                csv += $"{item.date},{item.donorNum},{item.name},${item.amount}";
+                csv += $"{item.date},{item.donorNum},{item.name},${item.amountCheck},${item.amountCash}";
+
             }
             //Found this on Microsofts website https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/file-system/how-to-write-to-a-text-file
             //Uses Streamwriter to APPEND the string in CSV to the existing file.
             using (StreamWriter file =
                 new StreamWriter(csvFile, true))
             {
-                file.WriteLine("\r\n" + csv);
+                file.WriteLine(csv);
             }
         }
 
         private void DeleteRow(object sender, RoutedEventArgs e)
         {
 
-            foreach (var item in TransactList)
+            foreach (var item in Transaction.TransactList)
             {
-                if (item.donorNum == Convert.ToInt32(DonorNumTransactionInput.Text) && item.amount == Convert.ToDouble(TransactionAmountInput.Text))
+                if (
+                    item.donorNum == Convert.ToInt32(DonorNumTransactionInput.Text) &&
+                    item.amountCheck == Convert.ToDecimal(TransactionAmountCheckInput.Text) &&
+                    item.amountCash == Convert.ToDecimal(TransactionAmountCashInput.Text)
+                    )
                 {
-                    TransactList.Remove(item);
+                    Transaction.TransactList.Remove(item);
                     break;
                 }
             }
@@ -138,15 +164,61 @@ namespace CashRec
 
         private void total(object sender, RoutedEventArgs e)
         {
-            double total = 0;
-            foreach (var item in TransactList)
+            decimal totalCheck = 0;
+            decimal totalCash = 0;
+            decimal totalA = 0;
+            foreach (var item in Transaction.TransactList)
             {
-                total += item.amount;
+                totalCheck += item.amountCheck;
+                totalCash += item.amountCash;
             }
-            MessageBox.Show("The Total is:$" + total);
+            totalCash = Math.Round(totalCash, 2);
+            totalCheck = Math.Round(totalCheck, 2);
+            totalA += totalCheck;
+            totalA += totalCash;
+            MessageBox.Show($"The total Check Amount:${totalCheck} {Environment.NewLine}Total Cash Amount:${totalCash} {Environment.NewLine}Total Amount:${totalA}");
+        }
+        
+        //Event Handlers for Transaction Page
+        
+        //Event Handlers for Balancing Page
+        //public int checkCount = 0;
+        private void InsertCheckAmount(object sender, RoutedEventArgs e)
+        {
+            //set the Itemsource to the new list TransactList
+            BalancingDataGrid.ItemsSource = Balancing.balancingList;
+            //BalancingDataGrid.ItemsSource = Transaction.TransactList;
+            //Use a foreach to add Dlist dicitionary to Transactlist on the Transaction Class
+            Balancing.balancingList.Add(new Balancing
+            {
+                checkAmountBal = Math.Round(Convert.ToDecimal(BalanceCheckAmount.Text), 2)
+            });
+            //foreach (var item in Balancing.balancingList)
+            //{
+                BalancingDataGrid.Items.Refresh();
+            //}
+            //checkCount += 1;
+            BalanceCheckCount.Text = Balancing.balancingList.Count.ToString();
+        }
+
+        //Issue here
+        private void DeleteCheckAmount(object sender, RoutedEventArgs e)
+        {
+            foreach (var item in Balancing.balancingList)
+            {
+                if (item.checkAmountBal == Convert.ToDecimal(BalanceCheckAmount.Text))
+                {
+                    Balancing.balancingList.Remove(item);
+                    break;
+                }
+                
+            }
+            BalancingDataGrid.Items.Refresh();
+            BalanceCheckCount.Text = Balancing.balancingList.Count.ToString();
         }
     }
-
+    //enable user to delete check balance entry
+    //work on cash balancing
     //Stop user from entering unused DonorNumber
     //Print Donor List functionality
 }
