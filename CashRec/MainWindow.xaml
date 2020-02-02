@@ -63,9 +63,9 @@
 
                 </Grid>
             </TabItem>
-            <TabItem x:Name="BalanceTab" Header="Balancing">
+            <TabItem x:Name="BalanceTab" Header="Balancing" Height="20" VerticalAlignment="Center">
                 <Grid>
-                    <DataGrid x:Name="BalancingDataGrid" x:FieldModifier="public"  SelectionUnit="Cell" Margin="125,22,505,21" ColumnWidth="Auto" AutoGenerateColumns="False">
+                    <DataGrid x:Name="BalancingDataGrid" x:FieldModifier="public"  SelectionUnit="Cell" Margin="125,22,0,21" ColumnWidth="Auto" AutoGenerateColumns="False" HorizontalAlignment="Left" Width="124">
                         <DataGrid.Columns >
                             <DataGridTextColumn Header="Check Amount" Binding="{Binding checkAmountBal}"></DataGridTextColumn>
                         </DataGrid.Columns>
@@ -77,12 +77,13 @@
                     <Button x:Name="DeleteCheck" Click="DeleteCheckAmount" HorizontalAlignment="Left" Height="20" Margin="20,104,0,0" VerticalAlignment="Top" Width="100">Delete</Button>
                     <Label HorizontalAlignment="Left" Margin="20,136,0,0" VerticalAlignment="Top" Width="100"># of Checks</Label>
                     <TextBox x:Name="BalanceCheckCount" HorizontalAlignment="Left" Margin="20,166,0,0" VerticalAlignment="Top" Width="100">0</TextBox>
-
+                    <Label HorizontalAlignment="Left" Margin="20,196,0,0" VerticalAlignment="Top" Width="100">Check Amount</Label>
+                    <TextBox x:Name="BalanceCheckCountFinal" HorizontalAlignment="Left" Margin="20,226,0,0" VerticalAlignment="Top" Width="100">0</TextBox>
                     <Label HorizontalAlignment="Right" Margin="20,4,90,0" VerticalAlignment="Top" Width="100">Cash Balancing</Label>
-                    <Label HorizontalAlignment="Right" Margin="0,42,255,0" VerticalAlignment="Top" Width="60">Pennies</Label>
+                    <Label Margin="0,42,255,0" Height="26" VerticalAlignment="Top" HorizontalAlignment="Right" Width="60">Pennies</Label>
                     <TextBox x:Name="BalancePennyInput" HorizontalAlignment="Right" Margin="20,46,150,0" VerticalAlignment="Top" Width="100" TextChanged="BalancePennyInput_TextChanged"></TextBox>
                     <TextBox x:Name="BalancePennyOutput" HorizontalAlignment="Right" Margin="20,46,20,0" VerticalAlignment="Top" Width="100">0.00</TextBox>
-                    <Label HorizontalAlignment="Right" Margin="0,72,255,0" VerticalAlignment="Top" Width="60">Nickels</Label>
+                    <Label HorizontalAlignment="Right" Margin="0,72,255,0" Width="60" Height="26" VerticalAlignment="Top">Nickels</Label>
                     <TextBox x:Name="BalanceNickelInput" HorizontalAlignment="Right" Margin="20,76,150,0" VerticalAlignment="Top" Width="100" TextChanged="BalanceNickelInput_TextChanged" Tag="Nickel" ></TextBox>
                     <TextBox x:Name="BalanceNickelOutput" HorizontalAlignment="Right" Margin="20,76,20,0" VerticalAlignment="Top" Width="100">0.00</TextBox>
                     <Label HorizontalAlignment="Right" Margin="0,102,255,0" VerticalAlignment="Top" Width="60">Dimes</Label>
@@ -109,8 +110,15 @@
                     <Label HorizontalAlignment="Right" Margin="0,312,255,0" VerticalAlignment="Top" Width="65">Hundreds</Label>
                     <TextBox x:Name="BalanceHundredInput" HorizontalAlignment="Right" Margin="0,316,150,0" VerticalAlignment="Top" Width="100" TextChanged="BalanceHundredInput_TextChanged"></TextBox>
                     <TextBox x:Name="BalanceHundredOutput" HorizontalAlignment="Right" Margin="0,316,20,0" VerticalAlignment="Top" Width="100">0.00</TextBox>
-                    <Label HorizontalAlignment="Right" Margin="0,352,255,0" VerticalAlignment="Top" Width="65">Total Cash</Label>
+                    <!--<Label HorizontalAlignment="Right" Margin="0,352,255,0" VerticalAlignment="Top" Width="65">Total Cash</Label>-->
+                    <Button HorizontalAlignment="Right" Margin="0,352,255,0" VerticalAlignment="Top" Width="65" Click="BalanceCashTotal">Total Cash</Button>
                     <TextBox x:Name="CashTotal" HorizontalAlignment="Right" Margin="0,354,90,0" VerticalAlignment="Top" Width="100">0</TextBox>
+                    <TextBlock TextWrapping="Wrap" HorizontalAlignment="Left" Margin="300,19,0,0" VerticalAlignment="Top" Width="100" Height="56">Check Total
+                        <LineBreak/>from Transaction Screen</TextBlock>
+                    <TextBox x:Name="TransactionCheckTotalBal" HorizontalAlignment="Left" Margin="300,80,0,0" VerticalAlignment="Top" Width="100">0.00</TextBox>
+                    <TextBlock TextWrapping="Wrap" HorizontalAlignment="Left" Margin="300,106,0,0" VerticalAlignment="Top" Width="100" Height="56"><Run Text="Cash Total"/><LineBreak/><Run Text="from Transaction Screen"/></TextBlock>
+                    <TextBox x:Name="TransactionCashTotalBal" HorizontalAlignment="Left" Margin="300,166,0,0" VerticalAlignment="Top" Width="100">0.00</TextBox>
+
                 </Grid>
 
             </TabItem>

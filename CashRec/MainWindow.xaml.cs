@@ -17,7 +17,7 @@ namespace CashRec
         public static Dictionary<int, string> Dlist = new Dictionary<int, string>();
 
         //Filepath for CSV File which will record entries made on the transaction grid
-        string csvFile = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + @"\TestCSV.csv";
+        string csvFile = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + @"\DonationHistory.csv";
 
 
 
@@ -72,6 +72,7 @@ namespace CashRec
             writeDlist();
         }
 
+        //Delete a donor from the Donor List, based only off of Donor Num Key in Dictionary
         private void DeleteDonorNum(object sender, RoutedEventArgs e)
         {
             string Donornum = DonorNumInput.Text;
@@ -86,12 +87,16 @@ namespace CashRec
 
 
         //Event Handlers for Transaction Page
+        //This handler writes the Transaction Inputs to the Transaction DataGrid.
+        //I use a different Transaction List to hold the Transaction and insert the entries to the datagrid. 
+        //Also, use the DonorNum to verify the Donor exists before inserting
+        //Need to add a popup that notifies the user if trying to enter in a nonvalid DonorNumber.
         public void ListTransactions(object sender, RoutedEventArgs e)
         {
 
             //set the Itemsource to the new list TransactList
             TransactionDataGrid.ItemsSource = Transaction.TransactList;
-            //BalancingDataGrid.ItemsSource = Transaction.TransactList;
+            
             //Use a foreach to add Dlist dicitionary to Transactlist on the Transaction Class
             foreach (var item in Dlist)
             {
@@ -124,6 +129,7 @@ namespace CashRec
 
         }
 
+        //This handler exports the datagrid to a CSV file saved to the desktop
         private void ExportList(object sender, RoutedEventArgs e)
         {
             //start by adding the column headers to the string
@@ -143,7 +149,7 @@ namespace CashRec
                 file.WriteLine(csv);
             }
         }
-
+        //This handler deletes the datagrid entry based on a matching DonorNum and Amount
         private void DeleteRow(object sender, RoutedEventArgs e)
         {
 
@@ -162,6 +168,8 @@ namespace CashRec
             TransactionDataGrid.Items.Refresh();
         }
 
+        //Adds the datagrid Cash and Check balances for a grand total. 
+        //Also inserts the Cash and Check Balances on the Balancing Tab for further reconcilation.
         private void total(object sender, RoutedEventArgs e)
         {
             decimal totalCheck = 0;
@@ -177,14 +185,17 @@ namespace CashRec
             totalA += totalCheck;
             totalA += totalCash;
             MessageBox.Show($"The total Check Amount:${totalCheck} {Environment.NewLine}Total Cash Amount:${totalCash} {Environment.NewLine}Total Amount:${totalA}");
+            TransactionCheckTotalBal.Text = "$"+totalCheck.ToString();
+            TransactionCashTotalBal.Text = "$"+totalCash.ToString();
         }
         
         //Event Handlers for Transaction Page
         
         //Event Handlers for Balancing Page
-        //public int checkCount = 0;
+        //The first two handlers insert Check amounts into the Check Balancing Datagrid
         private void InsertCheckAmount(object sender, RoutedEventArgs e)
         {
+            decimal total = 0;
             //set the Itemsource to the new list TransactList
             BalancingDataGrid.ItemsSource = Balancing.balancingList;
             //BalancingDataGrid.ItemsSource = Transaction.TransactList;
@@ -199,6 +210,11 @@ namespace CashRec
             //}
             //checkCount += 1;
             BalanceCheckCount.Text = Balancing.balancingList.Count.ToString();
+            foreach (var item in Balancing.balancingList)
+            {
+                total += item.checkAmountBal;
+            }
+            BalanceCheckCountFinal.Text = total.ToString();
         }
         
         private void DeleteCheckAmount(object sender, RoutedEventArgs e)
@@ -215,7 +231,9 @@ namespace CashRec
             BalancingDataGrid.Items.Refresh();
             BalanceCheckCount.Text = Balancing.balancingList.Count.ToString();
         }
-
+        //There must be a better way to do this.
+        //Each input has a function that takes the corresponding inputs and multiplies the inputs by the denomation of the input field.
+        //I don't know how I could pass parameters from the WPF inputs in order to streamline this portion.
         private void BalancePennyInput_TextChanged(object sender, TextChangedEventArgs e)
         {
             decimal total = 0;
@@ -436,11 +454,28 @@ namespace CashRec
                 Console.WriteLine(totalstr);
             }
         }
+
+        private void BalanceCashTotal(object sender, RoutedEventArgs e)
+        {
+            decimal total;
+            total = Convert.ToDecimal(BalancePennyOutput.Text)
+                + Convert.ToDecimal(BalanceNickelOutput.Text)
+                + Convert.ToDecimal(BalanceDimeOutput.Text)
+                + Convert.ToDecimal(BalanceQuarterOutput.Text)
+                + Convert.ToDecimal(BalanceDollarOutput.Text)
+                + Convert.ToDecimal(BalanceFiveOutput.Text)
+                + Convert.ToDecimal(BalanceTenOutput.Text)
+                + Convert.ToDecimal(BalanceTwentyOutput.Text)
+                + Convert.ToDecimal(BalanceFiftyOutput.Text)
+                + Convert.ToDecimal(BalanceHundredOutput.Text);
+            CashTotal.Text = total.ToString();
+        }
     }
 
     //TODO
-    
-    //work on cash balancing
+
+    //work on cash balancing totals ***DONE
+    //compare balancing totals to transaction totals ***DONE
     //Stop user from entering unused DonorNumber
     //Print Donor List functionality
 }

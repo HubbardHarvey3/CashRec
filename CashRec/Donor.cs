@@ -30,7 +30,7 @@ namespace CashRec
         public static Dictionary<int, string> temp = new Dictionary<int, string>();
         public static void savetoDlist()
         {
-
+            //TODO ********Need to add logic where if file exists we don't add headers again
             //print dictionary to console
 
             //reorder the dictionary before printing it
