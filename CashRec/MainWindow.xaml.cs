@@ -200,8 +200,7 @@ namespace CashRec
             //checkCount += 1;
             BalanceCheckCount.Text = Balancing.balancingList.Count.ToString();
         }
-
-        //Issue here
+        
         private void DeleteCheckAmount(object sender, RoutedEventArgs e)
         {
             foreach (var item in Balancing.balancingList)
@@ -216,8 +215,231 @@ namespace CashRec
             BalancingDataGrid.Items.Refresh();
             BalanceCheckCount.Text = Balancing.balancingList.Count.ToString();
         }
+
+        private void BalancePennyInput_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            decimal total = 0;
+            string totalstr;
+            try
+            {
+                total = Convert.ToDecimal(BalancePennyInput.Text) * .01M;
+                totalstr = total.ToString();
+                BalancePennyOutput.Text = totalstr;
+                Console.WriteLine(totalstr);
+            }
+            catch (Exception)
+            {
+
+                Console.WriteLine("error");
+                BalancePennyInput.Text = "0";
+                total = Convert.ToDecimal(BalancePennyInput.Text) * .01M;
+                totalstr = total.ToString();
+                BalancePennyOutput.Text = totalstr;
+                Console.WriteLine(totalstr);
+            }
+        }
+
+        private void BalanceNickelInput_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            decimal total = 0;
+            string totalstr;
+            try
+            {
+                total = Convert.ToDecimal(BalanceNickelInput.Text) * .05M;
+                totalstr = total.ToString();
+                BalanceNickelOutput.Text = totalstr;
+                Console.WriteLine(totalstr);
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Error");
+                BalanceNickelInput.Text = "0";
+                total = Convert.ToDecimal(BalanceNickelInput.Text) * .05M;
+                totalstr = total.ToString();
+                BalanceNickelOutput.Text = totalstr;
+                Console.WriteLine(totalstr);
+            }
+        }
+
+        private void BalanceDimeInput_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            decimal total = 0;
+            string totalstr;
+            try
+            {
+                total = Convert.ToDecimal(BalanceDimeInput.Text) * .1M;
+                totalstr = total.ToString();
+                BalanceDimeOutput.Text = totalstr;
+                Console.WriteLine(totalstr);
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Error");
+                BalanceDimeInput.Text = "0";
+                total = Convert.ToDecimal(BalanceDimeInput.Text) * .1M;
+                totalstr = total.ToString();
+                BalanceDimeOutput.Text = totalstr;
+                Console.WriteLine(totalstr);
+            }
+        }
+
+        private void BalanceQuarterInput_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            decimal total = 0;
+            string totalstr;
+            try
+            {
+                total = Convert.ToDecimal(BalanceQuarterInput.Text) * .25M;
+                totalstr = total.ToString();
+                BalanceQuarterOutput.Text = totalstr;
+                Console.WriteLine(totalstr);
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Error");
+                BalanceQuarterInput.Text = "0";
+                total = Convert.ToDecimal(BalanceQuarterInput.Text) * .25M;
+                totalstr = total.ToString();
+                BalanceQuarterOutput.Text = totalstr;
+                Console.WriteLine(totalstr);
+            }
+        }
+
+        private void BalanceDollarInput_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            decimal total = 0;
+            string totalstr;
+            try
+            {
+                total = Convert.ToDecimal(BalanceDollarInput.Text) * 1M;
+                totalstr = total.ToString();
+                BalanceDollarOutput.Text = totalstr;
+                Console.WriteLine(totalstr);
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Error");
+                BalanceDollarInput.Text = "0";
+                total = Convert.ToDecimal(BalanceDollarInput.Text) * 1M;
+                totalstr = total.ToString();
+                BalanceDollarOutput.Text = totalstr;
+                Console.WriteLine(totalstr);
+            }
+        }
+
+        private void BalanceFiveInput_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            decimal total = 0;
+            string totalstr;
+            try
+            {
+                total = Convert.ToDecimal(BalanceFiveInput.Text) * 5M;
+                totalstr = total.ToString();
+                BalanceFiveOutput.Text = totalstr;
+                Console.WriteLine(totalstr);
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Error");
+                BalanceFiveInput.Text = "0";
+                total = Convert.ToDecimal(BalanceFiveInput.Text) * 5M;
+                totalstr = total.ToString();
+                BalanceFiveOutput.Text = totalstr;
+                Console.WriteLine(totalstr);
+            }
+        }
+
+        private void BalanceTenInput_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            decimal total = 0;
+            string totalstr;
+            try
+            {
+                total = Convert.ToDecimal(BalanceTenInput.Text) * 10M;
+                totalstr = total.ToString();
+                BalanceTenOutput.Text = totalstr;
+                Console.WriteLine(totalstr);
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Error");
+                BalanceTenInput.Text = "0";
+                total = Convert.ToDecimal(BalanceTenInput.Text) * 10M;
+                totalstr = total.ToString();
+                BalanceTenOutput.Text = totalstr;
+                Console.WriteLine(totalstr);
+            }
+        }
+
+        private void BalanceTwentyInput_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            decimal total = 0;
+            string totalstr;
+            try
+            {
+                total = Convert.ToDecimal(BalanceTwentyInput.Text) * 20M;
+                totalstr = total.ToString();
+                BalanceTwentyOutput.Text = totalstr;
+                Console.WriteLine(totalstr);
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Error");
+                BalanceTwentyInput.Text = "0";
+                total = Convert.ToDecimal(BalanceTwentyInput.Text) * 20M;
+                totalstr = total.ToString();
+                BalanceTwentyOutput.Text = totalstr;
+                Console.WriteLine(totalstr);
+            }
+        }
+
+        private void BalanceFiftyInput_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            decimal total = 0;
+            string totalstr;
+            try
+            {
+                total = Convert.ToDecimal(BalanceFiftyInput.Text) * 50M;
+                totalstr = total.ToString();
+                BalanceFiftyOutput.Text = totalstr;
+                Console.WriteLine(totalstr);
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Error");
+                BalanceFiftyInput.Text = "0";
+                total = Convert.ToDecimal(BalanceFiftyInput.Text) * 50M;
+                totalstr = total.ToString();
+                BalanceFiftyOutput.Text = totalstr;
+                Console.WriteLine(totalstr);
+            }
+        }
+
+        private void BalanceHundredInput_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            decimal total = 0;
+            string totalstr;
+            try
+            {
+                total = Convert.ToDecimal(BalanceHundredInput.Text) * 100M;
+                totalstr = total.ToString();
+                BalanceHundredOutput.Text = totalstr;
+                Console.WriteLine(totalstr);
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Error");
+                BalanceHundredInput.Text = "0";
+                total = Convert.ToDecimal(BalanceHundredInput.Text) * 100M;
+                totalstr = total.ToString();
+                BalanceHundredOutput.Text = totalstr;
+                Console.WriteLine(totalstr);
+            }
+        }
     }
-    //enable user to delete check balance entry
+
+    //TODO
+    
     //work on cash balancing
     //Stop user from entering unused DonorNumber
     //Print Donor List functionality
