@@ -17,8 +17,8 @@ namespace CashRec
         public static Dictionary<int, string> Dlist = new Dictionary<int, string>();
 
         //Filepath for CSV File which will record entries made on the transaction grid
-        string csvFile = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + @"\DonationHistory.csv";
-
+        //string csvFile = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + @"\DonationHistory.csv";
+        string csvFile = Directory.GetCurrentDirectory() + @"\DonationHistory.csv";
 
 
         public MainWindow()
@@ -26,20 +26,30 @@ namespace CashRec
 
             InitializeComponent();
             //Reads the JSON file and adds the entries to the DList Dictionary
-            Donor.readDlist();
-            //Writes the dictionary to the textbox
-            writeDlist();
+            if (File.Exists(Donor.path))
+            {
+                Donor.readDlist();
+                writeDlist();
+            }
+            else
+            {
+                //Writes the dictionary to the textbox
+                writeDlist();
+            }
+            //If nothing is found, creates new DonorList.txt file in directory folder
+            Donor.savetoDlist();
+            
 
         }
         //I don't know what these two below do:
-        private void DonorListDisplay_TextChanged(object sender, TextChangedEventArgs e)
-        {
+        //private void DonorListDisplay_TextChanged(object sender, TextChangedEventArgs e)
+        //{
 
-        }
-        private void DailyRecordInput_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
+        //}
+        //private void DailyRecordInput_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        //{
 
-        }
+        //}
 
 
         //*************EVENT HANDLERS BELOW for Donor List Tab
@@ -86,7 +96,7 @@ namespace CashRec
         //*************EVENT HANDLERS ABOVE for Donor List Tab
 
 
-        //Event Handlers for Transaction Page
+        //Event Handlers for Transaction Page ↓↓↓↓
         //This handler writes the Transaction Inputs to the Transaction DataGrid.
         //I use a different Transaction List to hold the Transaction and insert the entries to the datagrid. 
         //Also, use the DonorNum to verify the Donor exists before inserting
@@ -124,8 +134,11 @@ namespace CashRec
                     TransactionDataGrid.Items.Refresh();
                     //BalancingDataGrid.Items.Refresh();
                 }
-
+                
             }
+            TransactionAmountCashInput.Text = "0";
+            TransactionAmountCheckInput.Text = "0";
+            DonorNumTransactionInput.Text = "0";
 
         }
 
@@ -148,6 +161,7 @@ namespace CashRec
             {
                 file.WriteLine(csv);
             }
+            MessageBox.Show("Export Complete");
         }
         //This handler deletes the datagrid entry based on a matching DonorNum and Amount
         private void DeleteRow(object sender, RoutedEventArgs e)
@@ -188,9 +202,9 @@ namespace CashRec
             TransactionCheckTotalBal.Text = "$"+totalCheck.ToString();
             TransactionCashTotalBal.Text = "$"+totalCash.ToString();
         }
-        
-        //Event Handlers for Transaction Page
-        
+
+        //Event Handlers for Transaction Page ↑↑↑↑↑
+
         //Event Handlers for Balancing Page
         //The first two handlers insert Check amounts into the Check Balancing Datagrid
         private void InsertCheckAmount(object sender, RoutedEventArgs e)
@@ -476,6 +490,10 @@ namespace CashRec
 
     //work on cash balancing totals ***DONE
     //compare balancing totals to transaction totals ***DONE
+    //Add a readme with instructions IMPORTANT
     //Stop user from entering unused DonorNumber
     //Print Donor List functionality
+    //Get rid of Display Donor List button on Donor List Tab ***DONE
+    //Reset Transaction inputs after submission.
+    //Pop up after exporting to CSV is complete ***DONE
 }

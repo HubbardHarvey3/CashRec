@@ -10,8 +10,8 @@ namespace CashRec
     public class Donor
     {
         //FilePath for JSON doc
-        public static string path = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + @"\text.txt";
-
+        //public static string path = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + @"\DonorList.txt";
+        public static string path = Directory.GetCurrentDirectory() + @"\DonorList.txt";
         //Initialize the Dictionary
 
 
@@ -84,7 +84,7 @@ namespace CashRec
             {
                 MessageBox.Show("Donor # already in use");
             }
-
+            savetoDlist();
         }
 
         public static void removeDlist(string num)

@@ -28,7 +28,7 @@
                     <TextBlock x:Name="DonorLastName" HorizontalAlignment="Left" Margin="27,277,0,0" Text="Last Name" TextWrapping="Wrap" VerticalAlignment="Top"/>
                     <Button Content="Submit" HorizontalAlignment="Left" Margin="27,344,0,0" VerticalAlignment="Top" Width="54" Click="SubmitDonor" Height="20" />
                     <TextBlock x:Name="DonorListTitle" HorizontalAlignment="Left" Margin="318,12,0,0" Text="Donor List" TextWrapping="Wrap" VerticalAlignment="Top"/>
-                    <Button x:Name="Displaybtn" Click="writeDlist" Content="Display Your Donor List" HorizontalAlignment="Left" Margin="27,10,0,0" VerticalAlignment="Top" Width="131" Height="20"/>
+
                     <TextBox x:Name="DonorListOutput" Margin="318,33,10,10" Text="TextBox" TextWrapping="Wrap" />
                     <Button Content="Delete" HorizontalAlignment="Left" Margin="104,177,0,0" VerticalAlignment="Top" Height="20" Width="54" Click="DeleteDonorNum"/>
                 </Grid>
