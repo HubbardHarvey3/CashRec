@@ -67,7 +67,7 @@
                 <Grid>
                     <DataGrid x:Name="BalancingDataGrid" x:FieldModifier="public"  SelectionUnit="Cell" Margin="125,22,0,21" ColumnWidth="Auto" AutoGenerateColumns="False" HorizontalAlignment="Left" Width="124">
                         <DataGrid.Columns >
-                            <DataGridTextColumn Header="Check Amount" Binding="{Binding checkAmountBal}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Check Amount" Binding="{Binding checkAmountBal, StringFormat=C}"></DataGridTextColumn>
                         </DataGrid.Columns>
 
                     </DataGrid>
