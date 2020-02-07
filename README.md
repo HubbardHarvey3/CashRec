@@ -1,5 +1,5 @@
-# ReconcileDonation
-# Free software for small churches or nonprofits to utilize in order to reconcile their donation.
+# Reconcile Donations
+### Free software for small churches or nonprofits to utilize in order to reconcile their donation.
 Thank you for downloading (Name Still Pending) the free Tool for use by Non-Profits Churches.
 The tool is broken down into 3 tabs, 
 1.	Donor List
